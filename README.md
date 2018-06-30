@@ -10,7 +10,7 @@
 ## Installation
 
 1. Enable PHP short tags.
-2. Restore attached database dump in to mysql database.
+2. Restore attached database dump in to mysql database. from 'codepool/studentManagement.sql'
 3. Edit the database credentials in `codepool/etc/config.xml`
 
 ## Nginx Server configs
