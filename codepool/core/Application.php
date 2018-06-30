@@ -4,6 +4,9 @@
  * @copyright   Copyright (c) 2018
  */
 
+/**
+ * Class Application
+ */
 class Application
 {
     /**
@@ -27,13 +30,14 @@ class Application
      */
     public function __construct()
     {
+        //resolve request URL
         $this->resolveRequestUri();
         if (!$this->controller) {
-
+            //redirected to student index
             require APP . 'controller/Student.php';
             $page = new Student();
             $page->index();
-
+            //check controller file exist
         } elseif (file_exists(APP . 'controller/' . $this->controller . '.php')) {
             require APP . 'controller/' . $this->controller . '.php';
             $this->controller = new $this->controller();

@@ -4,6 +4,9 @@
  * @copyright   Copyright (c) 2018
  */
 
+/**
+ * Class ConfigReader
+ */
 class ConfigReader
 {
     /**

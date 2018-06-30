@@ -45,14 +45,19 @@ class Student extends Controller
     }
 
     /**
-     *
+     * Index action
      */
     public function index()
     {
         $students = null;
         $subjects = null;
+        //load student model if exist
         if ($this->studentModel instanceof StudentModel) {
             $students = $this->studentModel->decorateStudentData();
+        }
+
+        //load subject model if exist
+        if ($this->subjectModel instanceof SubjectModel) {
             $subjects = $this->subjectModel->load();
         }
 
@@ -62,11 +67,12 @@ class Student extends Controller
         $this->pageData['formdata'] = $this->sessionHandler->getSessionData('formdata');
         $this->sessionHandler->clearSessionData('messages');
         $this->sessionHandler->clearSessionData('formdata');
+        //render index page
         $this->renderPage("student/index", $this->pageData);
     }
 
     /**
-     * Add student data
+     * Add student data to database
      */
     public function addStudent()
     {
@@ -75,9 +81,13 @@ class Student extends Controller
         try {
             if (isset($_POST["save_student_data"])) {
                 $data = $_POST["student"];
+                //set data to moddel
                 $this->studentModel->setData($data);
+                //validate data
                 if ($this->studentModel->validate()) {
+                    //save student data
                     $this->studentModel->addStudentData();
+                    //clear data
                     $this->studentModel->clear();
                     $messages['success'][] = "Student saved successfully";
                 } else {
