@@ -1,0 +1,19 @@
+body {
+    font-family: Arial;
+    font-size: 14px;
+}
+.title {
+    text-align: center;
+    font-weight: bold;
+    background-color: #dde3e4;
+    padding: 5px;
+    margin: 33px;
+}
+
+.messages.error {
+    background-color: #f9acb2;
+}
+
+.messages.success {
+    background-color: #b7e877;
+}

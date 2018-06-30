@@ -26,10 +26,12 @@ CREATE TABLE `student` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`student_id`),
   KEY `student_first_name_index` (`first_name`),
   KEY `student_last_name_index` (`last_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +40,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'gfgf','gfgfg'),(2,'fdfd','fdf'),(3,'hgh','ghgh'),(4,'hgh','ghgh'),(5,'hghytyt','ghghyty');
+INSERT INTO `student` VALUES (1,'Gayan','Harshana','2018-06-30 20:13:03','2018-06-30 20:13:03'),(2,'Mickeal','Johey','2018-06-30 20:15:09','2018-06-30 20:15:09');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,15 +52,13 @@ DROP TABLE IF EXISTS `student_subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student_subject` (
-  `entity_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
-  PRIMARY KEY (`entity_id`),
-  KEY `student_subject_student_id_index` (`student_id`),
+  PRIMARY KEY (`student_id`,`subject_id`),
   KEY `student_subject_subject_id_index` (`subject_id`),
   CONSTRAINT `student_subject_student_student_id_fk` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
   CONSTRAINT `student_subject_subject_subject_id_fk` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `student_subject` (
 
 LOCK TABLES `student_subject` WRITE;
 /*!40000 ALTER TABLE `student_subject` DISABLE KEYS */;
-INSERT INTO `student_subject` VALUES (1,1,1),(2,1,4),(3,1,3),(4,2,2),(5,3,2),(6,4,2),(7,5,2);
+INSERT INTO `student_subject` VALUES (1,1),(2,1),(2,2),(2,3),(2,4);
 /*!40000 ALTER TABLE `student_subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (1,'English'),(4,'History'),(2,'Mathamatics'),(3,'Science');
+INSERT INTO `subject` VALUES (1,'English'),(2,'History'),(3,'Language'),(4,'mirice;');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -105,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-30 17:26:23
+-- Dump completed on 2018-07-01  1:45:49
